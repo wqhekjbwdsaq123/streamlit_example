@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 # 웹 페이지 타이틀
 st.set_page_config(
-    layout="wide", page_title="복지패널 데이터분석 시각화 대시보드", page_icon="📊"
+    layout="wide", page_title="한국복지패널 데이터 기반 인구통계학적 특성별 월급 차이 시각화", page_icon="📊"
 )
 
 # 한글 폰트 설정 (OS별 호환성 처리)
@@ -116,7 +116,7 @@ if st.sidebar.button("데이터 로드"):
     st.rerun()
 
 # 메인
-st.title("한국복지패널 대시보드")
+st.title("한국복지패널 데이터 기반 인구통계학적 특성별 월급 차이 시각화")
 st.markdown("데이터 출처: 복지패널 데이터 (로컬에 csv 파일 필요)")
 
 # 데이터 로드
