@@ -10,11 +10,26 @@ st.set_page_config(
 
 # 한글 폰트 설정 (OS별 호환성 처리)
 import platform
+import matplotlib.font_manager as fm
+import os
+
 if platform.system() == 'Windows':
     plt.rc("font", family="Malgun Gothic")
 else:
-    # Streamlit Cloud(Linux) 환경
-    plt.rc("font", family="NanumGothic")
+    # Streamlit Cloud (Linux) 환경
+    # 폰트 경로를 직접 확인하거나 시스템 폰트에서 Nanum을 찾습니다.
+    nanum_path = '/usr/share/fonts/truetype/nanum/NanumGothic.ttf'
+    if os.path.exists(nanum_path):
+        fm.fontManager.addfont(nanum_path)
+        plt.rc("font", family="NanumGothic")
+    else:
+        # 시스템에 설치된 폰트 중 'Nanum'이 포함된 폰트를 찾아서 설정
+        nanum_fonts = [f.name for f in fm.fontManager.ttflist if 'Nanum' in f.name]
+        if nanum_fonts:
+            plt.rc("font", family=nanum_fonts[0])
+        else:
+            # 최종 예비: 폰트 이름만 지정
+            plt.rc("font", family="NanumGothic")
 
 # 마이너스 기호 깨짐 방지
 plt.rcParams["axes.unicode_minus"] = False
